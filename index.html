@@ -1,89 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zoom Phone Smart Embed</title>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>zoom</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 
 <body>
-    <!-- Zoom Phone Smart Embed iframe -->
+
     <iframe
-        src="https://applications.zoom.us/integration/phone/embeddablephone/home?originDomain=http://175.208.134.138:8081"
-        id="zoom-embeddable-phone-iframe" style="width: 350px; height: 580px;"
-        allow="clipboard-read; clipboard-write https://applications.zoom.us">
-    </iframe>
+        src="https://applications.zoom.us/integration/phone/embeddablephone/home?originDomain=chrome-extension://jkcjffekboifojeeicdhclbbkamlmoca"
+        id="zoom-embeddable-phone-iframe" allow="clipboard-read; clipboard-write https://applications.zoom.us"></iframe>
 
-    <!-- Zoom Phone Smart Embed script -->
-    <script>
-        var PHONESDKIFRAMEURL = 'https://applications.zoom.us/integration/phone/embeddablephone/home?originDomain=http://175.208.134.138:8081';
-    </script>
-    <script src="https://vaapplicationscontent.zoom.us/phoneSdk/static/smart-embed/js/sdk.js"></script>
-
-    <!-- Initialization script -->
-    <script>
-        document.querySelector('iframe#zoom-embeddable-phone-iframe').contentWindow.postMessage({
-            type: 'zp-init-config',
-            data: {
-                enableSavingLog: false,
-                enableAutoLog: false,
-                enableContactSearching: false,
-                enableContactMatching: false,
-                notePageConfiguration: [] // Optional
-            }
-        }, 'https://applications.zoom.us');
-    </script>
-
-    <!-- Example: Click to dial from a third-party app -->
-    <script>
-        function makeCall(phoneNumber) {
-            document.querySelector('iframe#zoom-embeddable-phone-iframe').contentWindow.postMessage({
-                type: 'zp-make-call',
-                data: {
-                    number: phoneNumber,
-                    autoDial: true
-                }
-            }, 'https://applications.zoom.us');
-        }
-    </script>
-
-    <!-- Example: Event listener for receiving events -->
-    <script>
-        window.addEventListener('message', (e) => {
-            const data = e.data;
-            if (data) {
-                switch (data.type) {
-                    case 'zp-call-ringing-event':
-                        console.log('Call ringing:', data.data);
-                        break;
-                    case 'zp-call-connected-event':
-                        console.log('Call connected:', data.data);
-                        break;
-                    case 'zp-call-ended-event':
-                        console.log('Call ended:', data.data);
-                        break;
-                    case 'zp-call-log-completed-event':
-                        console.log('Call log completed:', data.data);
-                        break;
-                    case 'zp-call-recording-completed-event':
-                        console.log('Call recording completed:', data.data);
-                        break;
-                    case 'zp-call-voicemail-received-event':
-                        console.log('Voicemail received:', data.data);
-                        break;
-                    case 'zp-sms-log-event':
-                        console.log('SMS log:', data.data);
-                        break;
-                    case 'zp-save-log-event':
-                        console.log('Save log:', data.data);
-                        break;
-                    default:
-                        console.log('Unknown event:', data);
-                }
-            }
-        });
-    </script>
 </body>
 
 </html>
